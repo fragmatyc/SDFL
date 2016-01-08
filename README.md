@@ -126,3 +126,6 @@ import myFile.csv into MY_TABLE using template
 	"CSV file column 3" -> MY_COLUMN_3;
 ```
 This syntax will make the compiler skip the header row.
+
+For detailed syntax documentation, see the wiki (to do)
+
