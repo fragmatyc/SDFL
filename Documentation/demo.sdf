@@ -1,0 +1,26 @@
+/**
+ * Usual header description of the data fix package
+ * @author Sylvain Cloutier
+ */
+in package 2012APR10PM;
+
+	/**
+     * Usual description of the data fix
+	 * @author Sylvain Cloutier
+	 */
+    create datafix DataFixName - Data fix description
+		import myFile.csv into MY_TABLE using template
+			#1 -> MY_COLUMN_1,
+			#2 -> MY_COLUMN_2,
+			#3 -> MY_COLUMN_3;
+		
+		insert into MY_TABLE using template 
+			"My value 1" -> MY_COLUMN_1,
+			"My value 2" -> MY_COLUMN_2
+		only if not exist ;
+		
+		update MY_TABLE using template 
+			"Value 1" -> MY_COLUMN_1
+		only if 
+			MY_COLUMN_1 = "ABC"
+			and (MY_COLUMN_2 = "POSSIBLE" or MY_COLUMN_2 = "POSSIBLE");
