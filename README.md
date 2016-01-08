@@ -14,7 +14,7 @@ The source files are parsed by the interpreter which creates POJOs of every stat
 The interpreter also performs the syntax validation. Any error found while parsing the source files are thrown and logged by the interpreter as <code>ParsingException</code>. Each <code>Statement</code> (POJO) contains the original code to help the user correct the code.
 
 ## SDFL Compilers 
-**SDFL** has (will have!) many different implementations of the compiler. The compiler is used to convert the Statement POJOs into proprietary SQL code based on the implementation of the compiler. For example, The <code>OracleCompiler</code> is used to create SQL and PL/SQL code from the Statement POJOs, and the <code>MySQLCompiler<code> does the same thing but targets the MySQL syntax.
+**SDFL** has (will have!) many different implementations of the compiler. The compiler is used to convert the Statement POJOs into proprietary SQL code based on the implementation of the compiler. For example, The <code>OracleCompiler</code> is used to create SQL and PL/SQL code from the Statement POJOs, and the <code>MySQLCompiler</code> does the same thing but targets the MySQL syntax.
 
 Once the code is compiled into SQL files, the compiler builds a package to make the transfer and the deployment as easy as possible. Depending on the execution environment (OS and software installed), the compiler builds a standardized directory structure and an executor file. The executor file runs the package using the applications installed such as SQL*Plus or the **SDFL** Executor.
 
