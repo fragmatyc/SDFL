@@ -50,3 +50,79 @@ where
     where 
       CLIENT_ID = '1001');
 ```
+This would insert the new <code>CLIENTS</code> records only if it does not already exist. You could use the <code>merge</code> statement (Oracle) or the <code>ingore</code> statement (MySQL), but still, there's lots of differences between the two syntaxes of the same language so insert a record only if it does not exist. In SDFL, we do:
+
+```
+insert into CLIENTS using template 
+	"1001" -> CLIENT_ID,
+	"Sylvain" -> FIRST_NAME,
+	"Cloutier" -> LAST_NAME
+only if not exist;
+```
+
+### Comments
+SDFL comments are based on C/C++ comments, meaning that both C++’s single and multiline comment delimiters are available. For single line comments, use <code>//</code>. Everything after this delimiter until the end of the line will be ignored by the compiler. For example:
+
+```
+// This line is a single line comment
+in package MY_DATA_FIX;
+```
+
+Multiline comments start with <code>/*</code> and end with <code>*/</code>, like:
+```
+/**
+ * This is a multiline comment.
+ * Created by Fragmatyc
+ */
+create datafix INIT – Initial load of the data
+```
+
+### SDFL Statements
+#### Organization statements
+SDFL offers a set of statements that are only destined to organize the code properly. SDFL source files are compiled into deployable package that are defined by those set of statements.
+
+#####in package statement
+The <code>in package</code> statement is a mandatory statement that must come at the first line of code in any deployable packages, apart from any comments. The purpose of this statement is to tell the compiler in which package the SDFL code is. Usually, the compiler creates a folder with the package identifier and stores the compiled code in it. 
+
+The only parameter this statement accepts is the package identifier and is mandatory. It cannot be a <code>String</code> and must not contain spaces of special characters. Only alpha-numeric characters and underscores <code>_</code> are accepted.
+
+Example:
+```
+// This creates a package called “PIZZAPP_FIX”
+in package PIZZAPP_FIX;
+```
+
+#####create datafix statement
+This statement is used to create a module in the data manipulation package and simply allows separation between logically related scripts. The compiler usually creates a separated folder to store the compiled files. There must be at least one data fix per package.
+
+The create datafix statement takes 2 parameters. The first one is the identifier of the data fix. Like the package name, only alpha-numeric characters and underscores <code>_</code> are accepted. Then, there is the description. The identifier and the description must be separated by a dash <code>-</code>.
+
+Example:
+```
+// This creates a new data fix called INIT
+create datafix INIT_DDL – Create the tables;
+
+// This one doesn’t have a description
+create datafix INIT_LOAD;
+```
+
+#### Data modifications statements
+##### import statement
+One of the things SQL doesn’t provide is a way to simply load data from a CSV or XLSX file. SDFL offers the import statement to achieve this. All you need to specify is the input file and a <code>template</code> that does the mapping between the columns of the file and the DB.
+
+Example:
+```
+import myFile.csv into MY_TABLE using template
+	#1 -> MY_COLUMN_1,
+	#2 -> MY_COLUMN_2,
+	#3 -> MY_COLUMN_3;
+```
+
+This will load <code>myFile.csv</code> into <code>MY_TABLE</code> and the first column of the CSV file will be inserted into <code>MY_COLUMN_1</code>. The arrow operator can be read as for *goes in* or *into*. The above example uses column ids (<code>#1</code>) which means the CSV file does not have a header row. If it does, you can do:
+```
+import myFile.csv into MY_TABLE using template
+	"CSV file column 1" -> MY_COLUMN_1,
+	"CSV file column 2" -> MY_COLUMN_2,
+	"CSV file column 3" -> MY_COLUMN_3;
+```
+This syntax will make the compiler skip the header row.
