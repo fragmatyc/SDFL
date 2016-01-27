@@ -1,6 +1,4 @@
 # SDFL
-## IMPORTANT!!!!
-SDFL is looking for a new name. This language is still in development and people doesn't seem to understand where I'm going with this. The following project description will soon be re-written from scratch. You can participate right now by going to <a href="http://goo.gl/krpCeT" target="_blank">this poll</a> to help me find a new and more attractive name. Think about this, SDFL is to SQL what CoffeeScript is to JavaScript!
 
 ## Description 
 **SDFL** (Simple Data Fix Language) is a language intended to either be compiled into pure SQL regardless of the DBMS, or executed by an interpreter written in Java.
