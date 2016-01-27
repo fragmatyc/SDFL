@@ -1,4 +1,6 @@
 # SDFL
+SDFL is looking for a new name. This language is still in development and people doesn't seem to understand where I'm going with this. The following project description will soo be written from scratch. You can participate right now by going to <a href="http://goo.gl/krpCeT" target="_blank">this poll</a> to help me find a new and more attractive name.
+
 **SDFL** (Simple Data Fix Language) is a language intended to either be compiled into pure SQL regardless of the DBMS, or executed by an interpreter written in Java.
 
 **SDFL** is intended to be used by developers, architects, DBA or even analysts. It is designed to be as readable as possible and strongly structured. It is also designed to be simple, with a short learning curve. It basically does everything SQL can do and offers some built-in API functions for common actions such as data import or extract, regardless of the DBMS. The point is to have a language on top of SQL so we only have to learn this. 
