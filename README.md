@@ -1,4 +1,6 @@
-# SDFL
+# Help Me!
+**New!!!**
+This projet is something I sincerly believe in. SDFL, as called for now, is intended to be to SQL what CoffeeScript is to JavaScript. What I want is to create a syntax (SDFL, for Simple Data Fix Language) that will be less verbose than SQL to help the creation of DDL and DML scripts that will be cross-vendor. For example, I want to write one set of create table statements and 1 set of initial data load from XLS files that would compile to vendor specific SQL. I'm still working on the features of the language, the name, the project description, etc.. If you want to help, file an issue with your recommendations, tweet at @Syl20TOS to names idea, etc..
 
 ## Description 
 **SDFL** (Simple Data Fix Language) is a language intended to either be compiled into pure SQL regardless of the DBMS, or executed by an interpreter written in Java.
