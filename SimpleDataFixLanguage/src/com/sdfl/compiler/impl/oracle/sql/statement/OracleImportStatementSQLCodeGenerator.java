@@ -78,11 +78,11 @@ public class OracleImportStatementSQLCodeGenerator extends
 		for (String lCurColAsStr : this.statement.getTemplate().getColumns()) {
 			UsingTemplateStatement lInsertTemplate = lInsertStatement.getTemplate();
 			
-			lCurColAsStr = this.statement.getTemplate().get(lCurColAsStr);
-			int lCurColIdx = this.defineColumnIdx(lCurColAsStr);
+			String lFileColumnNameOrId = this.statement.getTemplate().get(lCurColAsStr);
+			int lCurColIdx = this.defineColumnIdx(lFileColumnNameOrId);
 			String lValue = lCurRow.getColumnValue(lCurColIdx);
 			
-			lInsertTemplate.put(this.statement.getTemplate().get(lCurColAsStr), lValue);
+			lInsertTemplate.put(lCurColAsStr, lValue);
 		}
 		
 		return lInsertStatement;
@@ -114,9 +114,10 @@ public class OracleImportStatementSQLCodeGenerator extends
 	private void defineColumnHeadersVsIdx(ImportInputFile lInputFile) {
 		ImportInputFileRow lCurRow = lInputFile.get(0);
 		
-		for (String lCurColName : this.statement.getTemplate().getColumns()) {
+		for (String lCurDbColName : this.statement.getTemplate().getColumns()) {
 			boolean lColumnWasFound = false;
 			
+			String lCurColName = this.statement.getTemplate().get(lCurDbColName);
 			for (int lCurHeaderColIdx = 0; lCurHeaderColIdx < lCurRow.countColumns(); lCurHeaderColIdx++) {
 				if (lCurColName.equals(lCurRow.getColumnValue(lCurHeaderColIdx))) {
 					this.mappingOfHeaders.put(lCurColName, lCurHeaderColIdx);
