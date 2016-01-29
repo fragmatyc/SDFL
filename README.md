@@ -1,13 +1,13 @@
 # Help Me!
 **New!!!**
-This projet is something I sincerly believe in. SDFL, as called for now, is intended to be to SQL what CoffeeScript is to JavaScript. What I want is to create a syntax (SDFL, for Simple Data Fix Language) that will be less verbose than SQL to help the creation of DDL and DML scripts that will be cross-vendor. For example, I want to write one set of create table statements and 1 set of initial data load from XLS files that would compile to vendor specific SQL. I'm still working on the features of the language, the name, the project description, etc.. If you want to help, file an issue with your recommendations, tweet at @Syl20TOS to names idea, etc..
+This project is something I sincerly believe in. SDFL, as called for now, is intended to be to SQL what CoffeeScript is to JavaScript. What I want is to create a syntax (SDFL, for Simple Data Fix Language) that will be less verbose than SQL to help the creation of DDL and DML scripts that will be cross-vendor. For example, I want to write one set of create table statements and 1 set of initial data load from XLS files that would compile to vendor specific SQL. I'm still working on the features of the language, the name, the project description, etc.. If you want to help, file an issue with your recommendations, tweet at @Syl20TOS to names idea, etc..
 
 ## Description 
 **SDFL** (Simple Data Fix Language) is a language intended to either be compiled into pure SQL regardless of the DBMS, or executed by an interpreter written in Java.
 
 **SDFL** is intended to be used by developers, architects, DBA or even analysts. It is designed to be as readable as possible and strongly structured. It is also designed to be simple, with a short learning curve. It basically does everything SQL can do and offers some built-in API functions for common actions such as data import or extract, regardless of the DBMS. The point is to have a language on top of SQL so we only have to learn this. 
 
-As we work with different technologies, I found out that the main problem with the SQL language is that it's proprietary and depends a lot on the DBMS, which is not a surprise. I guess that's the whole point of the *no-SQL* tendency of these days. Of course, there are some standards in the industry regarding the simple statements, but what about complex business rules? We have to create stored functions, stored procedures, database packages, triggers or even write it in Java or C#. Can't we standardize?
+As we work with different technologies, I found out that the main problem with the SQL language is that it's proprietary and depends a lot on the DBMS, which is not a surprise. Of course, there are some standards in the industry regarding the simple statements, but what about complex business rules? We have to create stored functions, stored procedures, database packages, triggers or even write it in Java or C#. Can't we standardize?
 
 ## How it works 
 In this section you will find details about the architecture of **SDF**L. it all starts with an interpreter that parses the text source files into POJOs.
