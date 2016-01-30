@@ -10,7 +10,7 @@ This project is something I sincerly believe in. SDFL, as called for now, is int
 As we work with different technologies, I found out that the main problem with the SQL language is that it's proprietary and depends a lot on the DBMS, which is not a surprise. Of course, there are some standards in the industry regarding the simple statements, but what about complex business rules? We have to create stored functions, stored procedures, database packages, triggers or even write it in Java or C#. Can't we standardize?
 
 ## How it works 
-In this section you will find details about the architecture of **SDF**L. it all starts with an interpreter that parses the text source files into POJOs.
+In this section you will find details about the architecture of **SDFL**. it all starts with an interpreter that parses the text source files into POJOs.
 
 ### SDFL Interpreter 
 The source files are parsed by the interpreter which creates POJOs of every statements found in the code. Those are called SDFL statements that are runnable by the SDFL Executor.
