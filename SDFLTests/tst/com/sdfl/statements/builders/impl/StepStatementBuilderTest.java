@@ -30,26 +30,30 @@ import com.sdfl.statements.impl.StepStatement;
 import com.sdfl.statements.tokenizer.StatementTokens;
 
 /**
- * Test suite for StepStatementBuilder
+ * Test suite for {@link StepStatementBuilder}
  * @author Sylvain Cloutier
  */
 public class StepStatementBuilderTest extends BuilderTestClass {
+	private static final String STEP_STATEMENT_START = "step ";
+	private static final String DUMMY_TEXT = " asd;";
+	private static final String MY_STEP_ID1 = "myStepId1";
+	private static final String STEP_STATEMENT_MISSING_ID = "step";
 	private StepStatement statement;
 	
 	@Test(expected = MissingParameterException.class)
 	public void testThatStepIdIsMandatory() {
-		this.buildStatementBasedOnCode("step");
+		this.buildStatementBasedOnCode(STEP_STATEMENT_MISSING_ID);
 	}
 	
 	@Test(expected = ExpectedEndOfStatementException.class)
 	public void testThatTheEndOfStatementIsExceptedAfterTheStepId() {
-		this.buildStatementBasedOnCode("step stepId1 asd;");
+		this.buildStatementBasedOnCode(STEP_STATEMENT_START + MY_STEP_ID1 + DUMMY_TEXT);
 	}
 	
 	@Test
 	public void testThatTheStepIdIsSetProperly() {
-		this.buildStatementBasedOnCode("step myStepId1");
-		assertEquals("myStepId1", this.statement.getIdentifier());
+		this.buildStatementBasedOnCode(STEP_STATEMENT_START + MY_STEP_ID1);
+		assertEquals(MY_STEP_ID1, this.statement.getIdentifier());
 	}
 	
 	private void buildStatementBasedOnCode(String pCode) {
