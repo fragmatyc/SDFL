@@ -1,3 +1,8 @@
 /.metadata/**
 /.recommenders/**
 /RemoteSystemsTempFiles/**
+.classpath
+.project
+.settings/
+.idea/
+*.iml
