@@ -8,7 +8,7 @@ in package 2012APR10PM;
      * Usual description of the data fix
 	 * @author Sylvain Cloutier
 	 */
-    create datafix DataFixName - Data fix description
+    create datafix DataFixName - Data fix description;
 		import myFile.csv into MY_TABLE using template
 			#1 -> MY_COLUMN_1,
 			#2 -> MY_COLUMN_2,

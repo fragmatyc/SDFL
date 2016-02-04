@@ -19,10 +19,12 @@
  */
 package com.sdfl.compiler.impl.oracle;
 
+import com.sdfl.compiler.impl.oracle.sql.statement.OracleDeleteFromStatementSQLCodeGenerator;
 import com.sdfl.compiler.impl.oracle.sql.statement.OracleImportStatementSQLCodeGenerator;
 import com.sdfl.compiler.impl.oracle.sql.statement.OracleInsertIntoStatementSQLCodeGenerator;
 import com.sdfl.compiler.impl.oracle.sql.statement.OracleUpdateStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.SQLCodeGeneratorFactory;
+import com.sdfl.compiler.sql.statement.DeleteFromStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.ImportStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.InsertIntoStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.UpdateStatementSQLCodeGenerator;
@@ -46,6 +48,11 @@ public class OracleSQLCodeGeneratorFactory extends SQLCodeGeneratorFactory {
 	@Override
 	protected ImportStatementSQLCodeGenerator getForImportStatement() {
 		return new OracleImportStatementSQLCodeGenerator();
+	}
+
+	@Override
+	protected DeleteFromStatementSQLCodeGenerator getForDeleteFromStatement() {
+		return new OracleDeleteFromStatementSQLCodeGenerator();
 	}
 
 }

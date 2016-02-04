@@ -27,6 +27,7 @@ import com.sdfl.compiler.validator.StatementsValidator;
 import com.sdfl.exceptions.compiling.CompilingException;
 import com.sdfl.statements.Statement;
 import com.sdfl.statements.impl.CreateDatafixStatement;
+import com.sdfl.statements.impl.DeleteFromStatement;
 import com.sdfl.statements.impl.ImportStatement;
 import com.sdfl.statements.impl.InPackageStatement;
 import com.sdfl.statements.impl.InsertIntoStatement;
@@ -58,6 +59,7 @@ public abstract class SDFLCompiler {
 	protected abstract void compile(InsertIntoStatement pStatement);
 	protected abstract void compile(UpdateStatement pStatement);
 	protected abstract void compile(StepStatement pStatement);
+	protected abstract void compile(DeleteFromStatement pStatement);
 	protected abstract void postCompile();
 	
 	public void masterPostCompile() {
@@ -108,6 +110,9 @@ public abstract class SDFLCompiler {
 				
 			} else if (lCurStatement instanceof StepStatement) {
 				this.compile((StepStatement) lCurStatement);
+				
+			} else if (lCurStatement instanceof DeleteFromStatement) {
+				this.compile((DeleteFromStatement) lCurStatement);
 			}
 		} catch (CompilingException pCompileEx) {
 			this.compilationExceptions.add(pCompileEx);

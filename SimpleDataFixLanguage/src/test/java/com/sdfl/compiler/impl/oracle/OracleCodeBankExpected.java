@@ -74,5 +74,11 @@ public class OracleCodeBankExpected {
 			"        OR MY_COLUMN_2 = 'Value 3'" + System.lineSeparator() + 
 			"        OR (MY_COLUMN_3 != 'Value 2'" + System.lineSeparator() + 
 			"            AND MY_COLUMN_3 != 'Value 3'));";
+
+	public static final String BASIC_DELETE = 
+			"DELETE FROM" + System.lineSeparator() +
+			"    MY_TABLE" + System.lineSeparator() +
+			"WHERE" + System.lineSeparator() +
+			"    MY_COLUMN_1 = 'Value1';";
 	
 }

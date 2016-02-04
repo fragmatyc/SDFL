@@ -69,7 +69,23 @@ public class ConditionGroupSQLCodeGenerator extends SQLCodeGenerator {
 			this.builder.append(" != ");
 		}
 		
-		this.builder.append("'" + ((Assertion) lCurCondition).getRightTerm() + "'");
+		String rightTerm = this.removeStringQuotesIfNecessary(lCurCondition);
+		this.builder.append("'" + rightTerm + "'");
+	}
+
+	private String removeStringQuotesIfNecessary(Condition lCurCondition) {
+		String rightTerm = ((Assertion) lCurCondition).getRightTerm();
+		
+		if (valueIsWrappedWithStringQuotes(rightTerm)) {
+			rightTerm = rightTerm.substring(1, rightTerm.length() - 1);
+		}
+		
+		return rightTerm;
+	}
+
+	private boolean valueIsWrappedWithStringQuotes(String rightTerm) {
+		return rightTerm.startsWith("\"") 
+				&& rightTerm.endsWith("\"");
 	}
 	
 	private void addRelationKeywordIfNecessary(int pIndentLevel,

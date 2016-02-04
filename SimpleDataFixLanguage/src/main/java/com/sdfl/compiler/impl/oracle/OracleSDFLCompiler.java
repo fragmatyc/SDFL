@@ -26,6 +26,7 @@ import com.sdfl.compiler.SDFLCompiler;
 import com.sdfl.compiler.sql.SQLCodeGeneratorFactory;
 import com.sdfl.statements.Statement;
 import com.sdfl.statements.impl.CreateDatafixStatement;
+import com.sdfl.statements.impl.DeleteFromStatement;
 import com.sdfl.statements.impl.ImportStatement;
 import com.sdfl.statements.impl.InPackageStatement;
 import com.sdfl.statements.impl.InsertIntoStatement;
@@ -92,12 +93,12 @@ public class OracleSDFLCompiler extends SDFLCompiler {
 
 	@Override
 	protected void compile(ImportStatement pStatement) {
-		this.buildStatementSQLCodeAndAppendToStepFile(pStatement);
+		this.buildStatementSQLCodeAndAppendToAppropriatedFile(pStatement);
 	}
 	
 	@Override
 	protected void compile(UpdateStatement pStatement) {
-		this.buildStatementSQLCodeAndAppendToStepFile(pStatement);
+		this.buildStatementSQLCodeAndAppendToAppropriatedFile(pStatement);
 	}
 
 	@Override
@@ -108,6 +109,12 @@ public class OracleSDFLCompiler extends SDFLCompiler {
 		this.utilities.getFileHelper().createFile(this.stepFileHandle);		
 		this.utilities.getFileHelper().appendAtTheEndOfFile(this.runMeFileHandle, EXECUTE_COMMAND + lStepFileName);
 	
+	}
+	
+
+	@Override
+	protected void compile(DeleteFromStatement pStatement) {
+		this.buildStatementSQLCodeAndAppendToAppropriatedFile(pStatement);
 	}
 
 	@Override
@@ -122,12 +129,20 @@ public class OracleSDFLCompiler extends SDFLCompiler {
 
 	@Override
 	protected void compile(InsertIntoStatement pStatement) {
-		this.buildStatementSQLCodeAndAppendToStepFile(pStatement);
+		this.buildStatementSQLCodeAndAppendToAppropriatedFile(pStatement);
 	}
 
-	private void buildStatementSQLCodeAndAppendToStepFile(Statement pStatement) {
+	private void buildStatementSQLCodeAndAppendToAppropriatedFile(Statement pStatement) {
 		String lSQLCode = this.utilities.getCodeGenerator().generateStatementSQLCode(pStatement);
-		this.utilities.getFileHelper().appendAtTheEndOfFile(this.stepFileHandle, lSQLCode);
+		
+		File fileHandle = null;
+		if (this.stepFileHandle == null) {
+			fileHandle = this.runMeFileHandle;
+		} else {
+			fileHandle = this.stepFileHandle;
+		}
+		
+		this.utilities.getFileHelper().appendAtTheEndOfFile(fileHandle, lSQLCode);
 	}
 
 	@Override
@@ -153,4 +168,5 @@ public class OracleSDFLCompiler extends SDFLCompiler {
 		this.datafixFolderHandle = this.buildFileHandle(this.packageFolderHandle, pStatement.getDatafixId());
 		this.utilities.getFileHelper().createFolder(this.datafixFolderHandle);
 	}
+
 }

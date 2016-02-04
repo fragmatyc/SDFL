@@ -21,10 +21,12 @@ package com.sdfl.compiler.sql;
 
 import com.sdfl.compiler.CompilerType;
 import com.sdfl.compiler.impl.oracle.OracleSQLCodeGeneratorFactory;
+import com.sdfl.compiler.sql.statement.DeleteFromStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.ImportStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.InsertIntoStatementSQLCodeGenerator;
 import com.sdfl.compiler.sql.statement.UpdateStatementSQLCodeGenerator;
 import com.sdfl.statements.Statement;
+import com.sdfl.statements.impl.DeleteFromStatement;
 import com.sdfl.statements.impl.ImportStatement;
 import com.sdfl.statements.impl.InsertIntoStatement;
 import com.sdfl.statements.impl.UpdateStatement;
@@ -39,6 +41,7 @@ public abstract class SQLCodeGeneratorFactory {
 	protected abstract InsertIntoStatementSQLCodeGenerator getForInsertIntoStatement();
 	protected abstract UpdateStatementSQLCodeGenerator getForUpdateStatement();
 	protected abstract ImportStatementSQLCodeGenerator getForImportStatement();
+	protected abstract DeleteFromStatementSQLCodeGenerator getForDeleteFromStatement();
 	
 	public String generateStatementSQLCode(Statement pStatement) {
 		String lGeneratedCode = null;
@@ -49,6 +52,8 @@ public abstract class SQLCodeGeneratorFactory {
 			lGeneratedCode = this.getForUpdateStatement().generateSQLCode((UpdateStatement) pStatement);
 		} else if (pStatement instanceof ImportStatement) {
 			lGeneratedCode = this.getForImportStatement().generateSQLCode((ImportStatement) pStatement);
+		} else if (pStatement instanceof DeleteFromStatement) {
+			lGeneratedCode = this.getForDeleteFromStatement().generateSQLCode((DeleteFromStatement) pStatement);
 		}
 		
 		return lGeneratedCode;

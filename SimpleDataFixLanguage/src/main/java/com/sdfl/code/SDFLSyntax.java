@@ -37,6 +37,7 @@ public abstract class SDFLSyntax extends SDFLGrammar {
 	public static final String NOT_EQUAL = "!=";
 	public static final String GREATER_THAN = ">";
 	public static final String SMALLER_THAN = "<";
+	//public static final String STRING_QUOTE = "\"";
 
 	public static boolean isSyntax(String lCurrentToken) {
 		return SDFLGrammar.isValidGrammar(SDFLSyntax.values(), lCurrentToken);

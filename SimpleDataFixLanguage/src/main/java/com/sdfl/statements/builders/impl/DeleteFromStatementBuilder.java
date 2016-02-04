@@ -22,8 +22,9 @@ package com.sdfl.statements.builders.impl;
 import com.sdfl.code.SDFLKeywords;
 import com.sdfl.statements.Statement;
 import com.sdfl.statements.builders.StatementBuilder;
+import com.sdfl.statements.builders.impl.condition.OnlyIfStatementBuilder;
+import com.sdfl.statements.conditions.OnlyIfStatement;
 import com.sdfl.statements.impl.DeleteFromStatement;
-import com.sdfl.statements.template.UsingTemplateStatement;
 import com.sdfl.statements.tokenizer.StatementTokens;
 
 /**
@@ -43,12 +44,13 @@ public class DeleteFromStatementBuilder extends StatementBuilder {
 		this.tokens.consumeExpected(SDFLKeywords.FROM);
 		
 		String lTableName = this.tokens.consumeExpectedParameter();
+
+		System.out.println("Table name: " + lTableName);
 		lStatement.setTableName(lTableName);
 		
-		UsingTemplateStatementBuilder lTemplateBuilder = new UsingTemplateStatementBuilder(this.tokens);
-		UsingTemplateStatement lTemplate = lTemplateBuilder.build();
+		OnlyIfStatement lInsertCondition = new OnlyIfStatementBuilder(tokens).build();
+		lStatement.setConditionGroup(lInsertCondition.getConditionGroup());
 		
-		lStatement.setTemplate(lTemplate);
 		this.tokens.expectEndOfStatement();
 		
 		return lStatement;

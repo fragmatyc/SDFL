@@ -23,6 +23,7 @@ import com.sdfl.compiler.CompilerParameters;
 import com.sdfl.compiler.SDFLCompiler;
 import com.sdfl.statements.Statement;
 import com.sdfl.statements.impl.CreateDatafixStatement;
+import com.sdfl.statements.impl.DeleteFromStatement;
 import com.sdfl.statements.impl.ImportStatement;
 import com.sdfl.statements.impl.InPackageStatement;
 import com.sdfl.statements.impl.InsertIntoStatement;
@@ -83,6 +84,12 @@ public class SDFLCompilerForTests extends SDFLCompiler {
 
 	@Override
 	protected void compile(StepStatement pStatement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void compile(DeleteFromStatement pStatement) {
 		// TODO Auto-generated method stub
 		
 	}

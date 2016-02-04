@@ -19,11 +19,10 @@
  */
 package com.sdfl.statements.builders.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sdfl.exceptions.parsing.ExpectedEndOfStatementException;
 import com.sdfl.exceptions.parsing.MissingKeywordException;
 import com.sdfl.statements.builders.BuilderTestClass;
 import com.sdfl.statements.impl.DeleteFromStatement;
@@ -36,10 +35,9 @@ import com.sdfl.statements.tokenizer.StatementTokens;
 public class DeleteFromStatementBuilderTest extends BuilderTestClass {
 	private static final int COLUMN_COUNT_1 = 1;
 	private static final String MY_TABLE = "MY_TABLE";
-	private static final String VALID_DELETE_STATEMENT = "delete from MY_TABLE using template \"Value 1\" -> MY_COL_1";
-	private static final String INVALID_DELETE_STATEMENT_MISSING_FROM = "delete MY_TABLE using template \"Value 1\" -> MY_COL_1";
+	private static final String VALID_DELETE_STATEMENT = "delete from MY_TABLE only if MY_COL_1 = \"Value 1\"";
+	private static final String INVALID_DELETE_STATEMENT_MISSING_FROM = "delete MY_TABLE only if MY_COL_1 = \"Value 1\"";
 	private static final String INVALID_DELETE_STATEMENT_MISSING_TEMPLATE = "delete MY_TABLE";
-	private static final String INVALID_DELETE_STATEMENT_TOO_MANY_TOKENS = VALID_DELETE_STATEMENT + " token";
 	
 	private DeleteFromStatement statement;
 	
@@ -50,9 +48,9 @@ public class DeleteFromStatementBuilderTest extends BuilderTestClass {
 	}
 	
 	@Test
-	public void testThatTemplateHasTheProperNumberOfColumns() {
+	public void testThatConditionHasTheProperNumberOfColumns() {
 		this.buildStatementBasedOnCode(VALID_DELETE_STATEMENT);
-		assertEquals(COLUMN_COUNT_1, this.statement.getTemplate().getColumns().count());
+		assertEquals(COLUMN_COUNT_1, this.statement.getConditionGroup().getConditions().size());
 	}
 	
 	@Test(expected = MissingKeywordException.class)
@@ -63,11 +61,6 @@ public class DeleteFromStatementBuilderTest extends BuilderTestClass {
 	@Test(expected = MissingKeywordException.class)
 	public void testThatTemplateIsMandatory() {
 		this.buildStatementBasedOnCode(INVALID_DELETE_STATEMENT_MISSING_TEMPLATE);
-	}
-	
-	@Test(expected = ExpectedEndOfStatementException.class)
-	public void testThatStatementShouldEndAfterTemplate() {
-		this.buildStatementBasedOnCode(INVALID_DELETE_STATEMENT_TOO_MANY_TOKENS);
 	}
 	
 	private void buildStatementBasedOnCode(String pCode) {
