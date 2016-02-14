@@ -13,6 +13,6 @@ public class SingleDelimiterCodeFilterImpl
 
     @Override
     public String apply(final String input) {
-        return input.replaceAll(delimiter, "");
+        return input.replaceAll(delimiter, "").trim();
     }
 }
