@@ -6,15 +6,14 @@ import com.sdfl.code.filter.SingleDelimiterCodeFilterImpl;
 import com.sdfl.code.splitter.DelimitersPair;
 import org.junit.Test;
 
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.*;
-import java.util.Iterator;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by IntelliJ IDEA. User: cpt Date: 14-2-16 Time: 14:39
@@ -30,7 +29,7 @@ public class DefaultSourceFileMapperTest {
         DelimitersPair delimitersPair = new DelimitersPair("/*", "*/");
         CodeFilter commentFilter = new DelimiterPairCodeFilterImpl(delimitersPair);
         CodeFilter endOfLineFilter = new SingleDelimiterCodeFilterImpl(';');
-        CodeFilter newLineFilter = new SingleDelimiterCodeFilterImpl(new String("\n").charAt(0));
+        CodeFilter newLineFilter = new SingleDelimiterCodeFilterImpl("\n".charAt(0));
         testSubject = new DefaultSourceFileMapper(commentFilter, endOfLineFilter, newLineFilter);
         File tempFile = File.createTempFile("DefaultSourceFileMapperTest", "txt");
         tempFile.deleteOnExit();

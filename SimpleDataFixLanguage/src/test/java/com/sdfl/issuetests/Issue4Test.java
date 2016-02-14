@@ -28,7 +28,7 @@ public class Issue4Test {
         DelimitersPair delimitersPair = new DelimitersPair("/*", "*/");
         CodeFilter commentFilter = new DelimiterPairCodeFilterImpl(delimitersPair);
         CodeFilter endOfLineFilter = new SingleDelimiterCodeFilterImpl(';');
-        CodeFilter newLineFilter = new SingleDelimiterCodeFilterImpl(new String("\n").charAt(0));
+        CodeFilter newLineFilter = new SingleDelimiterCodeFilterImpl("\n".charAt(0));
         testSubject = new DefaultSourceFileMapper(commentFilter, endOfLineFilter, newLineFilter);
         String file = Thread.currentThread().getContextClassLoader().getResource("issue4input.txt").getFile();
         Path filePath = new File(file).toPath();

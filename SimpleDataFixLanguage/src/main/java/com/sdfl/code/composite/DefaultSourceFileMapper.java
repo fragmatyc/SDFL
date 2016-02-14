@@ -1,10 +1,7 @@
 package com.sdfl.code.composite;
 
 import com.sdfl.code.filter.CodeFilter;
-import com.sdfl.code.splitter.simpledelimiter.LinesSeparator;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
