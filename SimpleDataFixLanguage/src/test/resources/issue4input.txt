@@ -1,0 +1,3 @@
+/* comment */
+Line of code 1; /* comment */
+Line of code 2;

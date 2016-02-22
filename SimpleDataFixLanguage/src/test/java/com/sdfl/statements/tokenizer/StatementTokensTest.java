@@ -14,8 +14,8 @@ public class StatementTokensTest {
 	@Before
 	public void setup() {
 		tokens = new StatementTokens();
-		tokens.add(SDFLKeywords.IN.toString());
-		tokens.add(SDFLKeywords.PACKAGE.toString());
+		tokens.add(SDFLKeywords.IN);
+		tokens.add(SDFLKeywords.PACKAGE);
 		tokens.add(PACKAGE_NAME);
 	}
 	
@@ -23,8 +23,8 @@ public class StatementTokensTest {
 	public void testThatStatementTokensIsAFIFO() {
 		boolean lAllAsExpected = true;
 		
-		lAllAsExpected = lAllAsExpected && tokens.consumeNext().equals(SDFLKeywords.IN.toString());
-		lAllAsExpected = lAllAsExpected && tokens.consumeNext().equals(SDFLKeywords.PACKAGE.toString());
+		lAllAsExpected = lAllAsExpected && tokens.consumeNext().equals(SDFLKeywords.IN);
+		lAllAsExpected = lAllAsExpected && tokens.consumeNext().equals(SDFLKeywords.PACKAGE);
 		lAllAsExpected = lAllAsExpected && tokens.consumeNext().equals(PACKAGE_NAME);
 		
 		assertTrue(lAllAsExpected);
