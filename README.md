@@ -30,7 +30,7 @@ The **SDFL+** compiler is one that has a larger set of statements. Some function
 ### SDFL Executor ###
 This is a standalone Java application intended to execute the package compiled by the **SDFL+** Compiler. The executor is included in the package, which means the package kind of executes itself. In fact, the package produced by the **SDFL+** compiler contains the executor and the Statement POJOs. The executor is triggered, loads and runs the statements.
 
-## The syntax##
+## The syntax ##
 In SDFL, S stands for Simple. It's main purpose is to make the DB code less verbose. For example, in SQL, you would do:
 
 ```sql
