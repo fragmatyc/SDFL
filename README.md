@@ -24,10 +24,10 @@ Once the code is compiled into SQL files, the compiler builds a package to make 
 
 During compilation, any error occuring are logged as <code>CompilerError</code>.
 
-###SDFL+ Compiler ###
+### SDFL+ Compiler ###
 The **SDFL+** compiler is one that has a larger set of statements. Some functions are not available in technology specific compilers and are implemented in the **SDFL+** compiler such as logging, file transfer, emailing, etc.. This compiler also produces a cross-platform executable Java package intended to be used by the **SDFL** Executor. A copy of the executor is included in the package.
 
-###SDFL Executor ###
+### SDFL Executor ###
 This is a standalone Java application intended to execute the package compiled by the **SDFL+** Compiler. The executor is included in the package, which means the package kind of executes itself. In fact, the package produced by the **SDFL+** compiler contains the executor and the Statement POJOs. The executor is triggered, loads and runs the statements.
 
 ## The syntax##
@@ -85,7 +85,7 @@ create datafix INIT – Initial load of the data
 #### Organization statements ####
 SDFL offers a set of statements that are only destined to organize the code properly. SDFL source files are compiled into deployable package that are defined by those set of statements.
 
-#####in package statement #####
+##### in package statement #####
 The <code>in package</code> statement is a mandatory statement that must come at the first line of code in any deployable packages, apart from any comments. The purpose of this statement is to tell the compiler in which package the SDFL code is. Usually, the compiler creates a folder with the package identifier and stores the compiled code in it. 
 
 The only parameter this statement accepts is the package identifier and is mandatory. It cannot be a <code>String</code> and must not contain spaces of special characters. Only alpha-numeric characters and underscores <code>_</code> are accepted.
@@ -96,7 +96,7 @@ Example:
 in package PIZZAPP_FIX;
 ```
 
-#####create datafix statement#####
+##### create datafix statement #####
 This statement is used to create a module in the data manipulation package and simply allows separation between logically related scripts. The compiler usually creates a separated folder to store the compiled files. There must be at least one data fix per package.
 
 The create datafix statement takes 2 parameters. The first one is the identifier of the data fix. Like the package name, only alpha-numeric characters and underscores <code>_</code> are accepted. Then, there is the description. The identifier and the description must be separated by a dash <code>-</code>.
@@ -110,8 +110,8 @@ create datafix INIT_DDL – Create the tables;
 create datafix INIT_LOAD;
 ```
 
-#### Data modifications statements####
-##### import statement#####
+#### Data modifications statements ####
+##### import statement #####
 One of the things SQL doesn’t provide is a way to simply load data from a CSV or XLSX file. SDFL offers the import statement to achieve this. All you need to specify is the input file and a <code>template</code> that does the mapping between the columns of the file and the DB.
 
 Example:
